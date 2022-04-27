@@ -1,0 +1,27 @@
+.key {
+  background: lightgray;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1;
+  font-family: sans-serif;
+  font-weight: 800;
+  line-height: 55px;
+  margin: 0 4px;
+  max-width: 55px;
+  text-align: center;
+  width: 16px;
+}
+
+.key__hint-character {
+  background: #c9b458;
+  color: white;
+}
+
+.key__match-character {
+  background: #6aaa64;
+  color: white;
+}
+
+.enter {
+  min-width: 76px !important;
+}

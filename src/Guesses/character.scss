@@ -1,0 +1,79 @@
+.guess__character {
+  align-items: center;
+  background: rgb(135 138 140);
+  border: 2px solid rgb(135 138 140);
+  color: white;
+  display: flex;
+  font-family: monospace;
+  font-size: 2.5rem;
+  font-weight: 800;
+  height: 1.25em;
+  justify-content: center;
+  margin: 2.5px;
+  max-height: 60px;
+  max-width: 60px;
+  pointer-events: none;
+  text-transform: uppercase;
+  user-select: none;
+  width: 1.25em;
+
+  &.hintCharacter {
+    background: #c9b458;
+    border: 2px solid #c9b458;
+  }
+  
+  &.matchCharacter {
+    background: #6aaa64;
+    border: 2px solid #6aaa64;
+  }
+  
+  &.emptyCharacter {
+    background-color: transparent;
+    border: 2px solid rgb(0 0 0 / 33%);
+  }
+  
+  &.currentGuess {
+    background-color: white;
+    border: 2px solid rgb(135 138 140);
+    color: #5a5a5a;
+  }
+  
+  
+  &.previousCharacter {
+    animation-duration: 2s;
+    animation-name: characterFlip;
+  }
+}
+
+.guess {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+@keyframes characterFlip {
+  0% {
+    background-color: white;
+    border: 2px solid rgb(135 138 140);
+    color: #5a5a5a;
+    transform: rotateX(0deg);
+  }
+
+  50% {
+    background-color: white;
+    border: 2px solid rgb(135 138 140);
+    color: #5a5a5a;
+    transform: rotateX(90deg);
+  }
+
+  51% {
+    background-color: inherit;
+    border: 2px solid transparent;
+    color: inherit;
+  }
+
+  100% {
+    transform: rotateX(0deg);
+  }
+}

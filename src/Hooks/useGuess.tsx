@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-// import getRandomWord from "../sampleWords";
+import getRandomWord from "../sampleWords";
 
 type GuessContextType = {
   addLetterToGuess: (c: string) => void;
@@ -37,14 +37,14 @@ type Guess = {
   match: boolean;
 };
 
-const GuessContextProvider = ({ children }: {children: ReactNode}) => {
+const GuessContextProvider = ({ children }: { children: ReactNode }) => {
   const [completion, setCompletion] = React.useState<number>(0);
   // Status object.
   const [status, setStatus] = React.useState({ shiver: false });
   // Secret is the answer to the puzzle. I'm not bothering to hide this on the client side.
   const [secret, setSecret] = React.useState("");
   // This is the number of guesses that is allowed. Depending on the length of the secret you might incraease the number of allowed guesses.
-  const [allowedGuesses/*, setAllowedGuesses*/] = React.useState(6);
+  const [allowedGuesses /*, setAllowedGuesses*/] = React.useState(6);
   // guesses that have been made previously.
   const [guessArray, setGuessArray] = React.useState<any>([]);
   // This is the current guess.
@@ -114,8 +114,8 @@ const GuessContextProvider = ({ children }: {children: ReactNode}) => {
   };
 
   React.useEffect(() => {
-    setSecret("wordle");
-    // setSecret(getRandomWord());
+    // setSecret("wordle");
+    setSecret(getRandomWord());
     // Fetch request to an outside API to get a random wordl.
     /*
     let url = `https://api.wordnik.com/v4/words.json/randomWord?`;

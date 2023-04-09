@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import getRandomWord from "../sampleWords";
+import { getRandomWord } from "../sampleWords";
 
 type GuessContextType = {
   addLetterToGuess: (c: string) => void;

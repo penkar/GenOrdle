@@ -12,12 +12,9 @@ export default function EnterDel({ enter = false }: EnterDelInterface) {
   const { attemptGuess, removeLetter } = useGuess();
 
   return (
-    <a
-      className="enter key"
-      onClick={enter ? attemptGuess : removeLetter}
-    >
+    <button className="enter key" onClick={enter ? attemptGuess : removeLetter}>
       {enter ? "ENTER" : <FontAwesomeIcon icon={faDeleteLeft} />}
-    </a>
+    </button>
   );
 }
 

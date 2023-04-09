@@ -12,11 +12,11 @@ export default function Key({ letter }: KeyInterface) {
   const className = cn("key", {
     "key__match-character": matchCharacters.has(letter),
     "key__hint-character": hintCharacters.has(letter),
-  })
-  
+  });
+
   return (
-    <a className={className} onClick={addLetter}>
+    <button className={className} onClick={addLetter}>
       {letter}
-    </a>
+    </button>
   );
 }

@@ -1,4 +1,4 @@
-const sampleWords = [
+const wordList = [
   "aback",
   "abase",
   "abate",
@@ -2310,8 +2310,12 @@ const sampleWords = [
   "zonal",
 ];
 
-export default function getRandomWord(): string {
+export const getRandomWord = (): string => {
   /* Function will return a random workd from a list. That is all. */
-  const count = sampleWords.length;
-  return sampleWords[Math.trunc(Math.random() * count) - 1].toLowerCase();
-}
+  const count = wordList.length;
+  return wordList[Math.trunc(Math.random() * count) - 1].toLowerCase();
+};
+
+export const checkRandomWrod = (str: string) => {
+  return wordList.includes(str);
+};

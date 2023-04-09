@@ -43,11 +43,13 @@ export default function Statistics() {
       updateStats(completion);
       setCurrentModal(3);
     }
-  }, [completion]);
+  }, [completion, setCurrentModal, updateStats]);
 
   return (
     <div
-      className={currentModal === 3 ? "statistics__open" : "statistics__backdrop"}
+      className={
+        currentModal === 3 ? "statistics__open" : "statistics__backdrop"
+      }
       onClick={exitModal}
     >
       <div className="statistics__modal">

@@ -1,5 +1,4 @@
 import cn from "classnames";
-require("./character.scss");
 
 interface characterInterface {
   character: string;
@@ -17,11 +16,11 @@ const Character = ({
   previous,
 }: characterInterface) => {
   const charStyles = cn("guess__character", {
-    "matchCharacter": match,
-    "hintCharacter": hint,
-    "previousCharacter": previous,
-    "currentGuess": currentGuess,
-    "emptyCharacter": !currentGuess && !character,
+    matchCharacter: match,
+    hintCharacter: hint,
+    previousCharacter: previous,
+    currentGuess: currentGuess,
+    emptyCharacter: !currentGuess && !character,
   });
 
   return <div className={charStyles}>{character}</div>;

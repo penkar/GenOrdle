@@ -1,8 +1,6 @@
 import { Guess, CurrentGuess } from "./guess";
 import { useGuess } from "../Hooks/useGuess";
 
-require("./guesses.scss");
-
 export default function Guesses() {
   const { allowedGuesses, guesses, guess, secretLength } = useGuess();
   const emptyGuesses = allowedGuesses - guesses.length - 1 > 0;

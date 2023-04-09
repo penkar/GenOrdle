@@ -1,6 +1,5 @@
 import EnterDel from "./enterDel";
 import Key from "./key";
-require("./keyRow.scss");
 
 interface KeyRowInterface {
   enterDel?: boolean | undefined;

@@ -3,8 +3,6 @@ import React from "react";
 import KeyRow from "./keyRow";
 import { useGuess } from "../Hooks/useGuess";
 
-require("./keyboard.scss");
-
 export default function Keyboard() {
   const { addLetterToGuess, completion, removeLetter, attemptGuess } =
     useGuess();

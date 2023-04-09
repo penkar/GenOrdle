@@ -1,5 +1,4 @@
 import Character from "./character";
-require("./guess.scss");
 
 interface guessInterface {
   character: string;

@@ -2,33 +2,35 @@ import React, { ReactNode } from "react";
 import { getRandomWord, checkRandomWrod } from "../sampleWords";
 
 type GuessContextType = {
-  addLetterToGuess: (c: string) => void;
   allowedGuesses: number;
-  attemptGuess: () => void;
+  secretLength: number;
   completion: number;
   guess: string;
   guesses: [];
+  status: {};
   hintCharacters: Set<any>;
   matchCharacters: Set<any>;
+  spentCharacters: Set<any>;
+  attemptGuess: () => void;
   removeLetter: () => void;
-  secretLength: number;
+  addLetterToGuess: (c: string) => void;
   setGuess: (c: string) => void;
-  status: {};
 };
 
 const GuessContext = React.createContext<GuessContextType>({
-  addLetterToGuess: (c) => null,
   allowedGuesses: 6,
-  attemptGuess: () => null,
   completion: 0,
+  secretLength: 5,
   guess: "",
   guesses: [],
+  status: {},
   hintCharacters: new Set(),
   matchCharacters: new Set(),
+  spentCharacters: new Set(),
   removeLetter: () => null,
-  secretLength: 5,
+  attemptGuess: () => null,
+  addLetterToGuess: (c) => null,
   setGuess: (c) => null,
-  status: {},
 });
 
 type Guess = {
@@ -52,7 +54,8 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
   // This is an array of matching characters that match characters in the secret.
   const [hintCharacters, setHintCharacters] = React.useState(new Set());
   // This is an array of positions where characters have matched.
-  const [matchCharacters, setmatchCharacters] = React.useState(new Set());
+  const [matchCharacters, setMatchCharacters] = React.useState(new Set());
+  const [spentCharacters, setSpentCharacters] = React.useState(new Set());
 
   // Add a letter to the current guess.
   const addLetterToGuess = (letter: string) => {
@@ -76,6 +79,7 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
       for (let i = 0; i < guess.length; i++) {
         const character = guess[i];
         const characterObject = { match: false, hint: false, character };
+        spentCharacters.add(character);
         if (character === secret[i]) {
           characterObject.match = true;
           matchCharacters.add(character);
@@ -87,8 +91,9 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
         guessAttempt.push(characterObject);
       }
       newGuessArray.push(guessAttempt);
-      setmatchCharacters(matchCharacters);
+      setMatchCharacters(matchCharacters);
       setHintCharacters(hintCharacters);
+      setSpentCharacters(spentCharacters);
       setGuessArray(newGuessArray);
 
       if (newGuessArray.length === allowedGuesses) {
@@ -111,6 +116,7 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
     removeLetter,
     secretLength: secret.length,
     setGuess,
+    spentCharacters,
     status,
     matchCharacters: matchCharacters,
   };
@@ -118,30 +124,6 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
   React.useEffect(() => {
     // setSecret("wreck");
     setSecret(getRandomWord());
-    // Fetch request to an outside API to get a random wordl.
-    /*
-    let url = `https://api.wordnik.com/v4/words.json/randomWord?`;
-    const searchParams = {
-      hasDictionaryDef: true,
-      includePartOfSpeech:
-        "noun%2Cadjective%2Cverb%2Cadverb%2Cpreposition%2Carticle",
-      minCorpusCount: 1000,
-      maxCorpusCount: -1,
-      minDictionaryCount: 1,
-      maxDictionaryCount: -1,
-      minLength: 6,
-      maxLength: 6,
-      api_key: "YOURAPIKEY",
-    };
-    url += Object.entries(searchParams)
-      .map(([key, value]) => `${key}=${value}`)
-      .join("&");
-    fetch(`url`)
-      .then((res) => res.json())
-      .then(({ word }) => {
-        setSecret(word);
-      });
-    */
   }, []);
 
   return (

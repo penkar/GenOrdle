@@ -6,8 +6,6 @@ import { Guess } from "../Guesses/guess";
 
 import { useModal } from "../Hooks/useModal";
 
-require("./howToPlay.scss");
-
 const HowToPlay = React.memo(() => {
   const { currentModal, exitModal } = useModal();
 
@@ -33,7 +31,11 @@ const HowToPlay = React.memo(() => {
   ];
 
   return (
-    <div className={currentModal === 2 ? "how_to_play__open" : "how_to_play__modal"}>
+    <div
+      className={
+        currentModal === 2 ? "how_to_play__open" : "how_to_play__modal"
+      }
+    >
       <div className="how_to_play__contentWrapper">
         <div className="how_to_play__title">
           <span>how to play</span>
@@ -45,8 +47,8 @@ const HowToPlay = React.memo(() => {
         </div>
         <div>
           <div className="how_to_play__line">
-            Guess the <span className="how_to_play__strong">GenOrdle</span> in six
-            tries.
+            Guess the <span className="how_to_play__strong">GenOrdle</span> in
+            six tries.
           </div>
           <div className="how_to_play__line">
             Each guess must be a 5-8 character set of words. Hit the enter
@@ -59,22 +61,22 @@ const HowToPlay = React.memo(() => {
           <hr />
           <div className="how_to_play__strongLine">Examples</div>
           <div className="how_to_play__line">
-            The letter <span className="how_to_play__strong">T</span> is in the word
-            and in the correct spot.
+            The letter <span className="how_to_play__strong">T</span> is in the
+            word and in the correct spot.
           </div>
           <div className="how_to_play__line">
             <Guess length={4} previous guess={guess1} />
           </div>
           <div className="how_to_play__line">
-            The letter <span className="how_to_play__strong">O</span> is in the word
-            but in the wrong spot.
+            The letter <span className="how_to_play__strong">O</span> is in the
+            word but in the wrong spot.
           </div>
           <div className="how_to_play__line">
             <Guess length={4} previous guess={guess2} />
           </div>
           <div className="how_to_play__line">
-            The letter <span className="how_to_play__strong">S</span> is not in the
-            word in any spot.
+            The letter <span className="how_to_play__strong">S</span> is not in
+            the word in any spot.
           </div>
           <div className="how_to_play__line">
             <Guess length={4} previous guess={guess3} />

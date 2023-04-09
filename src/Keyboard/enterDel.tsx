@@ -1,3 +1,4 @@
+import cn from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 import { useGuess } from "../Hooks/useGuess";
@@ -12,7 +13,10 @@ export default function EnterDel({ enter = false }: EnterDelInterface) {
   const { attemptGuess, removeLetter } = useGuess();
 
   return (
-    <button className="enter key" onClick={enter ? attemptGuess : removeLetter}>
+    <button
+      className={cn("key", { enter: enter, delete: !enter })}
+      onClick={enter ? attemptGuess : removeLetter}
+    >
       {enter ? "ENTER" : <FontAwesomeIcon icon={faDeleteLeft} />}
     </button>
   );

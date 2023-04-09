@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { getRandomWord } from "../sampleWords";
+import { getRandomWord, checkRandomWrod } from "../sampleWords";
 
 type GuessContextType = {
   addLetterToGuess: (c: string) => void;
@@ -69,31 +69,33 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
   // Function will test the current guess against the secret.
   const attemptGuess = () => {
     if (guess.length < secret.length) return;
-    const guessAttempt: Guess[] = [];
-    const newGuessArray: Guess[][] = [...guessArray];
+    if (checkRandomWrod(guess)) {
+      const guessAttempt: Guess[] = [];
+      const newGuessArray: Guess[][] = [...guessArray];
 
-    for (let i = 0; i < guess.length; i++) {
-      const character = guess[i];
-      const characterObject = { match: false, hint: false, character };
-      if (character === secret[i]) {
-        characterObject.match = true;
-        matchCharacters.add(character);
+      for (let i = 0; i < guess.length; i++) {
+        const character = guess[i];
+        const characterObject = { match: false, hint: false, character };
+        if (character === secret[i]) {
+          characterObject.match = true;
+          matchCharacters.add(character);
+        }
+        if (secret.includes(character)) {
+          characterObject.hint = true;
+          hintCharacters.add(character);
+        }
+        guessAttempt.push(characterObject);
       }
-      if (secret.includes(character)) {
-        characterObject.hint = true;
-        hintCharacters.add(character);
-      }
-      guessAttempt.push(characterObject);
-    }
-    newGuessArray.push(guessAttempt);
-    setmatchCharacters(matchCharacters);
-    setHintCharacters(hintCharacters);
-    setGuessArray(newGuessArray);
+      newGuessArray.push(guessAttempt);
+      setmatchCharacters(matchCharacters);
+      setHintCharacters(hintCharacters);
+      setGuessArray(newGuessArray);
 
-    if (newGuessArray.length === allowedGuesses) {
-      setCompletion(7);
-    } else if (guess === secret) {
-      setCompletion(newGuessArray.length);
+      if (newGuessArray.length === allowedGuesses) {
+        setCompletion(7);
+      } else if (guess === secret) {
+        setCompletion(newGuessArray.length);
+      }
     }
     setGuess("");
   };
@@ -114,7 +116,7 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   React.useEffect(() => {
-    // setSecret("wordle");
+    // setSecret("wreck");
     setSecret(getRandomWord());
     // Fetch request to an outside API to get a random wordl.
     /*

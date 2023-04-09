@@ -2,21 +2,21 @@ import React, { ReactNode } from "react";
 
 type CurrentStats = {
   current_streak: number;
-  guessCount: number[]
+  guessCount: number[];
   longest_streak: number;
   total: number;
   wins: number;
 };
 
 type StatsContextType = {
-  currentStats:  CurrentStats;
+  currentStats: CurrentStats;
   updateStats: (level: number) => void;
 };
 
 const StatsContext = React.createContext<StatsContextType>({
   currentStats: {
     current_streak: 0,
-    guessCount: [0,0,0,0,0,0,0],
+    guessCount: [0, 0, 0, 0, 0, 0, 0],
     longest_streak: 0,
     total: 0,
     wins: 0,
@@ -24,13 +24,13 @@ const StatsContext = React.createContext<StatsContextType>({
   updateStats: (s) => null,
 });
 
-const StatsContextProvider = ({ children }: {children: ReactNode}) => {
+const StatsContextProvider = ({ children }: { children: ReactNode }) => {
   const [currentStats, setCurrentStats] = React.useState({
     wins: 0,
     total: 0,
     current_streak: 0,
     longest_streak: 0,
-    guessCount:[0,0,0,0,0,0,0]
+    guessCount: [0, 0, 0, 0, 0, 0, 0],
   });
 
   React.useEffect(() => {
@@ -43,7 +43,7 @@ const StatsContextProvider = ({ children }: {children: ReactNode}) => {
         total: parseInt(existingStats.total) || 0,
         current_streak: parseInt(existingStats.current_streak) || 0,
         longest_streak: parseInt(existingStats.longest_streak) || 0,
-        guessCount: existingStats.guessCount || [0,0,0,0,0,0,0],
+        guessCount: existingStats.guessCount || [0, 0, 0, 0, 0, 0, 0],
       };
       setCurrentStats(newCurrentstats);
     }
@@ -59,9 +59,9 @@ const StatsContextProvider = ({ children }: {children: ReactNode}) => {
         }
         newCurrentstats.current_streak++;
         newCurrentstats.wins++;
-        newCurrentstats.guessCount[gl] =  newCurrentstats.guessCount[gl] + 1;
+        newCurrentstats.guessCount[gl] = newCurrentstats.guessCount[gl] + 1;
       } else {
-        newCurrentstats.guessCount[0] =  newCurrentstats.guessCount[0] + 1
+        newCurrentstats.guessCount[0] = newCurrentstats.guessCount[0] + 1;
       }
       window.localStorage.setItem("genordle", JSON.stringify(newCurrentstats));
       setCurrentStats(newCurrentstats);

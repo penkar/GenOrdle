@@ -23,6 +23,10 @@
   color: white;
 }
 
-.enter {
-  min-width: 76px !important;
+.key.delete {
+  min-width: 45px;
+}
+
+.key.enter {
+  min-width: 64px;
 }

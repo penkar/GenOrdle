@@ -6,8 +6,6 @@ import { useGuess } from "../Hooks/useGuess";
 import { useModal } from "../Hooks/useModal";
 import { useStats } from "../Hooks/useStats";
 
-require("./statistics.scss");
-
 interface barInterface {
   completion: number;
   count: number;
@@ -43,7 +41,8 @@ export default function Statistics() {
       updateStats(completion);
       setCurrentModal(3);
     }
-  }, [completion, setCurrentModal, updateStats]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [completion]);
 
   return (
     <div

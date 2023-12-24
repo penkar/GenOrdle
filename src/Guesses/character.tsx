@@ -1,19 +1,13 @@
 import cn from "classnames";
 
-interface characterInterface {
-  character: string;
-  currentGuess?: boolean;
-  hint?: boolean;
-  match?: boolean;
-  previous?: boolean;
-}
+import { characterInterface } from "./types";
 
 const Character = ({
-  character,
-  currentGuess,
-  hint,
-  match,
-  previous,
+  character = "",
+  currentGuess = false,
+  hint = false,
+  match = false,
+  previous = false,
 }: characterInterface) => {
   const charStyles = cn("guess__character", {
     matchCharacter: match,
@@ -24,14 +18,6 @@ const Character = ({
   });
 
   return <div className={charStyles}>{character}</div>;
-};
-
-Character.defaultProps = {
-  character: "",
-  currentGuess: false,
-  hint: false,
-  match: false,
-  previous: false,
 };
 
 export default Character;

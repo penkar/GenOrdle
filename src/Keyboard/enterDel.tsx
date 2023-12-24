@@ -3,9 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 import { useGuess } from "../Hooks/useGuess";
 
-interface EnterDelInterface {
-  enter?: boolean;
-}
+import { EnterDelInterface } from "./types";
 
 export default function EnterDel({ enter = false }: EnterDelInterface) {
   const { attemptGuess, removeLetter } = useGuess();
@@ -19,7 +17,3 @@ export default function EnterDel({ enter = false }: EnterDelInterface) {
     </button>
   );
 }
-
-EnterDel.defaultProps = {
-  enter: false,
-};

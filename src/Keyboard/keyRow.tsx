@@ -1,12 +1,12 @@
 import EnterDel from "./enterDel";
 import Key from "./key";
 
-interface KeyRowInterface {
-  enterDel?: boolean | undefined;
-  letters: string;
-}
+import { KeyRowInterface } from "./types";
 
-export default function KeyRow({ enterDel, letters = "" }: KeyRowInterface) {
+export default function KeyRow({
+  enterDel = false,
+  letters = "",
+}: KeyRowInterface) {
   return (
     <div className="key__row">
       {enterDel && <EnterDel enter />}
@@ -17,7 +17,3 @@ export default function KeyRow({ enterDel, letters = "" }: KeyRowInterface) {
     </div>
   );
 }
-
-KeyRow.defaultProps = {
-  enterDel: false,
-};

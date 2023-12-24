@@ -6,12 +6,7 @@ import { useGuess } from "../Hooks/useGuess";
 import { useModal } from "../Hooks/useModal";
 import { useStats } from "../Hooks/useStats";
 
-interface barInterface {
-  completion: number;
-  count: number;
-  num: number;
-  total: number;
-}
+import { barInterface } from "./types";
 
 const Bar = ({ completion, count, num, total }: barInterface) => {
   const percent = Math.max(10, (count * 100) / total);

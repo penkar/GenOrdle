@@ -1,9 +1,7 @@
 import cn from "classnames";
 import { useGuess } from "../Hooks/useGuess";
 
-interface KeyInterface {
-  letter: string;
-}
+import { KeyInterface } from "./types";
 
 export default function Key({ letter }: KeyInterface) {
   const { addLetterToGuess, hintCharacters, matchCharacters, spentCharacters } =

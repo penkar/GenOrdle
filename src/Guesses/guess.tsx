@@ -1,18 +1,12 @@
 import Character from "./character";
 
-interface guessInterface {
-  character: string;
-  hint: boolean;
-  match: boolean;
-}
+import { guessInterface, guessesInterface } from "./types";
 
-interface guessesInterface {
-  guess: guessInterface[];
-  length: number;
-  previous?: boolean;
-}
-
-export const Guess = ({ length, guess, previous }: guessesInterface) => {
+export const Guess = ({
+  length,
+  guess = [],
+  previous = false,
+}: guessesInterface) => {
   const currentGuess = new Array(length);
   for (let i = 0; i < length; i++) {
     currentGuess[i] = guess[i] || {};
@@ -24,11 +18,6 @@ export const Guess = ({ length, guess, previous }: guessesInterface) => {
       ))}
     </div>
   );
-};
-
-Guess.defaultProps = {
-  guess: [],
-  previous: false,
 };
 
 interface currentGuessInterface {

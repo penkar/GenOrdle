@@ -30,5 +30,5 @@ export const CurrentGuess = ({ guess, length }: currentGuessInterface) => {
   for (let i = 0; i < length; i++) {
     letters.push(<Character character={guess[i]} currentGuess key={i} />);
   }
-  return <div className="guess__guess">{letters}</div>;
+  return <div className="guess__guess current_guess">{letters}</div>;
 };

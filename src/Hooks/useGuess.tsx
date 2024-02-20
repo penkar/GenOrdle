@@ -3,6 +3,7 @@ import { getRandomWord, checkRandomWrod } from "../sampleWords";
 
 type GuessContextType = {
   allowedGuesses: number;
+  rumble: boolean;
   secretLength: number;
   completion: number;
   guess: string;
@@ -20,6 +21,7 @@ type GuessContextType = {
 const GuessContext = React.createContext<GuessContextType>({
   allowedGuesses: 6,
   completion: 0,
+  rumble: false,
   secretLength: 5,
   guess: "",
   guesses: [],
@@ -43,6 +45,7 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
   const [completion, setCompletion] = React.useState<number>(0);
   // Status object.
   const [status, setStatus] = React.useState({ shiver: false });
+  const [rumble, setRumble] = React.useState(false);
   // Secret is the answer to the puzzle. I'm not bothering to hide this on the client side.
   const [secret, setSecret] = React.useState("");
   // This is the number of guesses that is allowed. Depending on the length of the secret you might incraease the number of allowed guesses.
@@ -101,8 +104,14 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
       } else if (guess === secret) {
         setCompletion(newGuessArray.length);
       }
+      setGuess("");
+    } else {
+      setRumble(true);
+      setTimeout(() => {
+        setRumble(false);
+        setGuess("");
+      }, 500);
     }
-    setGuess("");
   };
 
   const guessProps = {
@@ -114,6 +123,7 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
     guesses: guessArray,
     hintCharacters: hintCharacters,
     removeLetter,
+    rumble,
     secretLength: secret.length,
     setGuess,
     spentCharacters,

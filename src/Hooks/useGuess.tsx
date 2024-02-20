@@ -4,6 +4,7 @@ import { getRandomWord, checkRandomWrod } from "../sampleWords";
 type GuessContextType = {
   allowedGuesses: number;
   rumble: boolean;
+  secret: string | null;
   secretLength: number;
   completion: number;
   guess: string;
@@ -22,6 +23,7 @@ const GuessContext = React.createContext<GuessContextType>({
   allowedGuesses: 6,
   completion: 0,
   rumble: false,
+  secret: null,
   secretLength: 5,
   guess: "",
   guesses: [],
@@ -124,6 +126,7 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
     hintCharacters: hintCharacters,
     removeLetter,
     rumble,
+    secret: completion ? secret : null,
     secretLength: secret.length,
     setGuess,
     spentCharacters,

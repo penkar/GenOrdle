@@ -97,6 +97,15 @@ body,
     padding-bottom: 12px;
   }
 
+  .statistics__secret {
+    color: mediumblue;
+    font-size: 1rem;
+    text-transform: uppercase;
+    &:before {
+      content: "Answer: ";
+    }
+  }
+
   .statistics__stats {
     display: flex;
     flex-direction: row;

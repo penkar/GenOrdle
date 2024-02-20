@@ -26,7 +26,7 @@ const Bar = ({ completion, count, num, total }: barInterface) => {
 };
 
 export default function Statistics() {
-  const { completion } = useGuess();
+  const { completion, secret } = useGuess();
   const { currentModal, exitModal, setCurrentModal } = useModal();
   const { currentStats, updateStats } = useStats();
 
@@ -72,6 +72,7 @@ export default function Statistics() {
               <div>max strek</div>
             </div>
           </div>
+          {secret && <div className="statistics__secret">{secret}</div>}
           <div className="statistics__title">gross distribution</div>
         </div>
         <div className="statistics__barChart">

@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,6 +8,7 @@ import { Guess } from "../Guesses/guess";
 import { useModal } from "../Hooks/useModal";
 
 const HowToPlay = React.memo(() => {
+  const [loading, setLoading] = React.useState(true);
   const { currentModal, exitModal } = useModal();
 
   const guess1 = [
@@ -30,11 +32,17 @@ const HowToPlay = React.memo(() => {
     { match: false, hint: false, character: "s" },
   ];
 
+  React.useEffect(() => {
+    setTimeout(() => setLoading(false), 2000);
+  }, []);
+
   return (
     <div
-      className={
-        currentModal === 2 ? "how_to_play__open" : "how_to_play__modal"
-      }
+      className={cn({
+        how_to_play__open: currentModal === 2,
+        how_to_play__modal: currentModal !== 2,
+        how_to_play__loading: loading,
+      })}
     >
       <div className="how_to_play__contentWrapper">
         <div className="how_to_play__title">

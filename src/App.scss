@@ -162,10 +162,16 @@ body,
   align-items: center;
 }
 
+.how_to_play__loading {
+  left: -100vw !important;
+  animation: slideOut 0s;
+}
+
 .how_to_play__open {
   animation: slideIn 2s;
   left: 0;
   right: 0;
+  opacity: 1;
 }
 
 @keyframes slideOut {

@@ -85,7 +85,7 @@ export default function Statistics() {
           <Bar
             completion={completion}
             count={currentStats.guessCount[2]}
-            num={1}
+            num={2}
             total={total}
           />
           <Bar

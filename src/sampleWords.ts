@@ -2319,3 +2319,11 @@ export const getRandomWord = (): string => {
 export const checkRandomWrod = (str: string) => {
   return wordList.includes(str);
 };
+
+export const getWordBasedOnDate = (offset: number) => {
+  const date = new Date();
+  const dateNum = Math.floor(date.getTime() / 1000 / 60 / 60 / 24);
+  const dayNum = date.getDay();
+
+  return wordList[(dateNum + dayNum + offset) % wordList.length];
+};

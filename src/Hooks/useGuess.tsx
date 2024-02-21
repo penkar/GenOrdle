@@ -1,12 +1,16 @@
 import React, { ReactNode } from "react";
-import { getRandomWord, checkRandomWrod } from "../sampleWords";
+import {
+  // getRandomWord,
+  getWordBasedOnDate,
+  checkRandomWrod,
+} from "../sampleWords";
 
 type GuessContextType = {
-  allowedGuesses: number;
   rumble: boolean;
-  secret: string | null;
-  secretLength: number;
+  allowedGuesses: number;
   completion: number;
+  secretLength: number;
+  secret: string | null;
   guess: string;
   guesses: [];
   status: {};
@@ -20,11 +24,11 @@ type GuessContextType = {
 };
 
 const GuessContext = React.createContext<GuessContextType>({
+  rumble: false,
   allowedGuesses: 6,
   completion: 0,
-  rumble: false,
-  secret: null,
   secretLength: 5,
+  secret: null,
   guess: "",
   guesses: [],
   status: {},
@@ -101,6 +105,8 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
       setSpentCharacters(spentCharacters);
       setGuessArray(newGuessArray);
 
+      setOffset();
+
       if (newGuessArray.length === allowedGuesses) {
         setCompletion(7);
       } else if (guess === secret) {
@@ -134,9 +140,30 @@ const GuessContextProvider = ({ children }: { children: ReactNode }) => {
     matchCharacters: matchCharacters,
   };
 
+  const getOffset = () =>
+    JSON.parse(
+      window.localStorage.getItem("genordleOffset") ||
+        '{"date": 0, "offset": 0}'
+    ).offset;
+
+  const setOffset = () => {
+    const dateNum = Math.floor(new Date().getTime() / 1000 / 60 / 60 / 24);
+    const offsetData = JSON.parse(
+      window.localStorage.getItem("genordleOffset") ||
+        '{"date": 0, "offset": 0}'
+    );
+    const offset = dateNum === offsetData.date ? offsetData.offset : 0;
+    window.localStorage.setItem(
+      "genordleOffset",
+      JSON.stringify({ date: dateNum, offset: offset + 1 })
+    );
+    return offset;
+  };
+
   React.useEffect(() => {
     // setSecret("wreck");
-    setSecret(getRandomWord());
+    // setSecret(getRandomWord());
+    setSecret(getWordBasedOnDate(getOffset()));
   }, []);
 
   return (

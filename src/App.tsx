@@ -8,9 +8,9 @@ import { ModalContextProvider } from "./Hooks/useModal";
 import { StatsContextProvider } from "./Hooks/useStats";
 import Modals from "./Modals/index";
 
-require("./App.scss");
+require("./App.css");
 
-const Layout = ({ children }: {children: ReactNode}) => (
+const Layout = ({ children }: { children: ReactNode }) => (
   <StatsContextProvider>
     <ModalContextProvider>
       <GuessContextProvider>{children}</GuessContextProvider>
